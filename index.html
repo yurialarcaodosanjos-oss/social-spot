@@ -25,7 +25,7 @@
       display: flex; align-items: center; justify-content: center;
       z-index: 100; transition: opacity 0.4s; flex-direction: column; gap: 1rem; padding: 2rem; text-align: center;
     }
-    #loading.fade-out { opacity: 0; pointer-events: none; }
+    #loading.fade-out { opacity: 0; pointer-events: none; visibility: hidden; display: none !important; }
     .spinner { width: 32px; height: 32px; border: 2px solid rgba(212,168,83,0.15); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
     #loading-msg { font-size: 13px; color: #4a3020; letter-spacing: 0.05em; max-width: 300px; line-height: 1.7; }
     #debug-log { font-size: 11px; color: #3a2010; margin-top: 0.5rem; max-width: 320px; text-align: left; font-family: monospace; }
@@ -286,9 +286,10 @@
     });
 
   function hideLoading() {
+    showScreen('landing');
     const el = document.getElementById('loading');
     if (!el) return;
-    el.classList.add('fade-out');
+    el.style.display = "none"; el.classList.add('fade-out');
     setTimeout(() => el.remove(), 400);
   }
 
